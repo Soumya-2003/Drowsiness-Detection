@@ -3,14 +3,14 @@ Driver Drowsiness Detection is a Python project that uses computer vision to det
 It sounds an alert when drowsiness is detected to help prevent accidents due to driver fatigue.
 
 
-#TABLE OF CONTENTS
+##   TABLE OF CONTENTS
 1)  Installation
 2)  Usage
 3)  Dependencies
 4)  How It Works
 
 
-   #INSTALLATION
+## INSTALLATION
 To run this project, you need to have Python, OpenCV, Dlib, imutils, and pygame installed on your system. 
 We installed the required packages using pip:
         'pip install {package_name}'
@@ -19,14 +19,14 @@ You also need to download the shape predictor model file ("shape_predictor_68_fa
 from the Dlib website and place it in the project directory.
 
 
-#USAGE
+## USAGE
 1)  Run the Python script
 2)  The webcam feed will open, and the program will start detecting drowsiness.
 3)  If the driver's eyes remain closed for an extended period, an alert will be triggered, notifying the driver to stay awake.
 4)  To exit the program, press the "q" key.
 
 
-    #DEPENDENCIES
+## DEPENDENCIES
 This project relies on the following Python packages:
 
 OpenCV: For capturing video frames and image processing.
@@ -35,13 +35,13 @@ imutils: For resizing frames and other convenience functions.
 pygame: For playing an alert sound.
 winsound: for beep alerts.
 
-#HOW IT WORKS
+## HOW IT WORKS
 The program works by analyzing the driver's eye landmarks and calculating the Eye Aspect Ratio (EAR). 
 When the EAR falls below a predefined threshold for a certain number of frames, an alert is triggered to wake up the driver. 
 The program uses Dlib's facial landmark detection model to locate and track the eyes.
 
 
-#ALGORITHM
+## ALGORITHM
 1)  Initialize Libraries and Variables:
 Import necessary libraries (OpenCV, imutils, dlib, etc.).
 Initialize Pygame mixer for audio alerts.
