@@ -8,7 +8,7 @@ from pygame import mixer
 import winsound
 from gtts import gTTS
 import pyttsx3
-import tkinter as tk
+from tkinter import*
 from tkinter import messagebox
 from PIL import Image,ImageTk
 language = "en"
@@ -58,10 +58,11 @@ def start_detection():
                     cv2.putText(frame, "*ALERT*", (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 0, 225), 2)
                     cv2.putText(frame, "*WARNING*", (10, 325), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 0, 225), 2)
                     mixer.init()
-                    #mixer.music.load("music.wav")
-                    winsound.Beep(2500,1000)
+                    mixer.music.load("music.wav")
+                    mixer.music.play()
+
                     engine = pyttsx3.init()
-                    engine.say("Wake Up! Wake Up! Attention ") 
+                    engine.say(" Attention ") 
                     engine.runAndWait()
                     engine.stop
             else:
@@ -83,27 +84,41 @@ def ex_det():
 # detection_thread.start()
 
 # Create the main Tkinter window
-root = tk.Tk()
+root = Tk()
 root.title("Drowsiness Detection System")
-root['background']='gray17'
-root.geometry("650x500+0+0")
+# root['background']='gray17'
+img = ImageTk.PhotoImage(Image.open("ams DMS 950.jpeg (1).jpg"))
+lab = Label(image=img)
+lab.place(x=0   , y=0)
+root.geometry("1525x800+0+0")
 root.wm_iconbitmap("think.ico")
 
-l1=tk.Label(root,text="Welcome to the Drowsiness Detection System",font=('arial',21,'bold'),bg='gray17',fg='snow')
+l1=Label(root,text="Welcome to the Drowsiness Detection System",font=('arial',21,'bold'),bg='gray17',fg='snow')
 l1.place(x=10,y=10)
-l2=tk.Label(root,text="Developed by ThinkTECH",font=('arial',10,'bold'),bg='gray17',fg='skyblue')
-l2.place(x=10,y=450)
+l2=Label(root,text="Developed by ThinkTECH",font=('arial',15,'bold'),bg='gray17',fg='skyblue')
+l2.place(x=1265,y=720)
 def message():
-    messagebox.showinfo('Attention !','Press:_Start Drowsiness Detection_botton to start \n\n\nPress:_q_botton in your keyboard to exit')
+    messagebox.showinfo('Attention !','Press:_Start Drowsiness Detection_botton to start \n\n\nPress:_q_button in your keyboard to exit')
+  
+  
+st = "Driver Drowsiness Detection is a Python project that uses computer vision to detect driver drowsiness in real-time using a webcam. \nIt sounds an alert when drowsiness is detected to help prevent accidents due to driver fatigue.\n The program works by analyzing the driver's eye landmarks and calculating the Eye Aspect Ratio (EAR). When the EAR falls below a predefined threshold for a certain number of frames, an alert is triggered to wake up the driver. \nThe program uses Dlib's facial landmark detection model to locate and track the eyes."  
+    
+def message_about():
+    messagebox.showinfo('About Our Application',st)
 
-start1_button = tk.Button(root, text="CLICK HERE to know the steps",font=('arial',16,'bold'),bg='yellow3',fg='black', command = message)
-start1_button.place(x=110,y=100)
+start1_button = Button(root, text="CLICK HERE\n for steps",font=('arial',20,'bold'),bg='yellow3',fg='black', command = message)
+start1_button.place(x=10,y=60)
+
+# About section
+about_button = Button(root, text="About",font=('arial',20,'bold'),bg='CadetBlue2',fg='black', command = message_about)
+about_button.place(x=1250,y=60)
+
 # Create a button to start the drowsiness detection
-start_button = tk.Button(root, text="START Drowsiness Detection",font=('arial',16,'bold'),bg='Green2',fg='black', command = start_detection)
-start_button.place(x=117,y=200)
+start_button = Button(root, text="START\nDrowsiness Detection",font=('arial',20,'bold'),bg='lime green',fg='black', command = start_detection)
+start_button.place(x=600,y=500)
 
 # Create a button to quit the application
-quit_button = tk.Button(root,text="QUIT",font=('arial',16,'bold'),bg='DeepPink1',fg='black', command=root.destroy)
-quit_button.place(x=240,y=300)
+quit_button = Button(root,text="Quit",font=('arial',20,'bold'),bg='brown2',fg='black', command=root.destroy)
+quit_button.place(x=1400,y=60)
 
 root.mainloop()
